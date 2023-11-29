@@ -1,0 +1,17 @@
+---
+version: '3'
+
+services:
+
+  postgres:
+   container_name: postgres
+   image: 'postgres:${PG_VER}'
+   hostname: postgres
+   ports:
+     - "5432:5432"
+   environment:
+     TZ: ${TZ_SET}
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: ${POSTGRES_SRC_PASSWORD}
+     POSTGRES_DB: postgres
+

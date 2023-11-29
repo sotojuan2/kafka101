@@ -210,10 +210,142 @@ docker compose down
 
 And check the demo https://github.com/tomasalmeida/kafka-partition-assignment-examples
 
+## Connect
 
+### Setup
+
+Let's start our containers again:
+
+```bash
+docker compose up -d
+```
+
+Open http://localhost:9021 and confirm you have your connect server available.
+
+You can check the connector plugins available by executing:
+
+```bash
+curl localhost:8083/connector-plugins | jq
+```
+
+As you see we only have source connectors:
+
+```text
+[
+  {
+    "class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "type": "source",
+    "version": "null"
+  },
+  {
+    "class": "org.apache.kafka.connect.mirror.MirrorCheckpointConnector",
+    "type": "source",
+    "version": "7.5.0-ce"
+  },
+  {
+    "class": "org.apache.kafka.connect.mirror.MirrorHeartbeatConnector",
+    "type": "source",
+    "version": "7.5.0-ce"
+  },
+  {
+    "class": "org.apache.kafka.connect.mirror.MirrorSourceConnector",
+    "type": "source",
+    "version": "7.5.0-ce"
+  }
+]
+```
+
+So let's install some connector sink plugin.
+
+For that we will open a shell into our connect container:
+
+```bash
+docker compose exec -it connect bash
+```
+
+Once inside the container we can install a new connector from confluent-hub:
+
+```bash
+confluent-hub install confluentinc/kafka-connect-jdbc:latest
+```
+
+(Choose option 2 and after say yes to everything when prompted.)
+
+Now if we list our plugins again we should see two new ones corresponding to the JDBC connector.
+
+We will need a postgres database so let's cd into the postgres folder in another shell and execute:
+
+```bash
+docker compose up -d
+```
+
+Now with a postgres client as pgAdmin4 we can create connection to our database using:
+
+```text
+server: localhost
+port: 5432
+username: postgres
+password: password
+```
+
+### Source Connector
+
+Let's create a source connector using datagen from the controlcenter.
+
+```bash
+ccurl -i -X PUT -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/my-datagen-source/config -d '{
+    "name" : "my-datagen-source",
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "kafka.topic" : "products",
+    "output.data.format" : "AVRO",
+    "quickstart" : "PRODUCT",
+    "tasks.max" : "1"
+}'
+```
+
+We can consume the topic products being populated by our connector:
+
+```bash
+kafka-avro-console-consumer --topic products \
+--bootstrap-server 127.0.0.1:19092 \
+--property schema.registry.url=http://127.0.0.1:8081 \
+--from-beginning
+```
+
+### Sink Connector
+
+Now let's create a sink connector:
+
+```bash
+curl -i -X PUT -H "Accept:application/json" \
+    -H  "Content-Type:application/json" http://localhost:8083/connectors/my-sink-postgres/config \
+    -d '{
+          "connector.class"    : "io.confluent.connect.jdbc.JdbcSinkConnector",
+          "connection.url"     : "jdbc:postgresql://host.docker.internal:5432/postgres",
+          "connection.user"    : "postgres",
+          "connection.password": "password",
+          "topics"             : "products",
+          "tasks.max"          : "1",
+          "auto.create"        : "true",
+          "auto.evolve"        : "true"}'
+```
+
+Check that we are using for the URL host.docker.internal to point to the host from inside the container.
+
+Now if we check on our Postgres client the table products should have been created and we can execute a count:
+
+```sql
+select count(*) from products;
+```
+
+If you re-execute the statement you can see that the number increases as datagen connector keeps generating new entries.
 
 ## Cleanup
 
+From the root of the project:
+
 ```bash
+docker compose down -v
+cd postgres
 docker compose down -v
 ```
