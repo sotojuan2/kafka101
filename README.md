@@ -205,7 +205,7 @@ Once it has consumed all messages in the topic run in parallel the io.confluent.
 You could now stop the containers:
 
 ```bash
-docker compose down
+docker compose down -v
 ```
 
 And check the demo https://github.com/tomasalmeida/kafka-partition-assignment-examples
