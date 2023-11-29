@@ -94,6 +94,122 @@ kafka-producer-perf-test --topic my-topic --num-records 10000 --record-size 100 
 
 ## Java Basic Producer
 
+Now let's execute the class io.confluent.csta.kafka101.basic.BasicProducer.
+
+You should see on the console output something like this:
+
+```text
+INFO - 2023-11-28 22:01:59,494 - io.confluent.csta.kafka101.basic.BasicProducer:50 - Sent key=10, value=ohYtUMGLBl - Partition-1 - Offset 99048  
+INFO - 2023-11-28 22:01:59,992 - io.confluent.csta.kafka101.basic.BasicProducer:50 - Sent key=19, value=GEKp5GZH1z - Partition-2 - Offset 99156   
+```
+
+And in one of our shells lets execute the consumer:
+
+```bash
+kafka-console-consumer --bootstrap-server localhost:19092 \
+--topic my-topic --property print.timestamp=true \
+--property print.value=true \
+--property print.key=true \
+--property key.deserializer=org.apache.kafka.common.serialization.IntegerDeserializer
+```
+
+In another shell describe the topic:
+
+```bash
+kafka-topics --bootstrap-server localhost:19092 --topic my-topic --describe
+```
+
+Now meanwhile producer and consumer are executing let's stop one of the kafka broker instances:
+
+```bash
+docker compose stop kafka4
+```
+
+Check producer and consumer still executing.
+
+Execute describe of the topic again.
+
+## Avro Schema Based Producer
+
+### Register Schema
+
+First lets register our schema against Schema Registry:
+
+```bash
+jqjq '. | {schema: tojson}' src/main/resources/avro/customer.avsc | \
+curl -X POST http://localhost:8081/subjects/customers-value/versions \
+-H "Content-Type: application/vnd.schemaregistry.v1+json" \
+-d @-
+```
+
+You should see as response:
+
+```text
+{"id":1}
+```
+
+You can also check schema was registered by executing:
+
+```bash
+curl -s http://localhost:8081/subjects/
+```
+
+```bash
+curl -s http://localhost:8081/subjects/customers-value/versions
+```
+
+```bash
+curl -s http://localhost:8081/subjects/customers-value/versions/1
+```
+
+### Create Topic
+
+Let's create our topic:
+
+```bash
+kafka-topics --bootstrap-server localhost:19092 --create \
+--topic customers \
+--replication-factor 3 \
+--partitions 6
+```
+
+### Run Producer
+
+Now let's run our producer io.confluent.csta.kafka101.avro.AvroProducer.
+
+And check with consumer:
+
+```bash
+kafka-avro-console-consumer --topic customers \
+--bootstrap-server 127.0.0.1:19092 \
+--property schema.registry.url=http://127.0.0.1:8081 \
+--from-beginning
+```
+
+## Consumers
+
+### Basic Consumer
+
+Run the io.confluent.csta.kafka101.basic.BasicConsumer
+
+Once it has consumed all messages in the topic run in parallel the io.confluent.csta.kafka101.basic.BasicProducer
+
+### Avro Schema Based Consumer
+
+Run the io.confluent.csta.kafka101.avro.AvroConsumer
+
+Once it has consumed all messages in the topic run in parallel the io.confluent.csta.kafka101.avro.AvroProducer
+
+## Consumer Groups
+
+You could now stop the containers:
+
+```bash
+docker compose down
+```
+
+And check the demo https://github.com/tomasalmeida/kafka-partition-assignment-examples
+
 
 
 ## Cleanup
