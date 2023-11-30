@@ -136,7 +136,7 @@ Execute describe of the topic again.
 First lets register our schema against Schema Registry:
 
 ```bash
-jqjq '. | {schema: tojson}' src/main/resources/avro/customer.avsc | \
+jq '. | {schema: tojson}' src/main/resources/avro/customer.avsc | \
 curl -X POST http://localhost:8081/subjects/customers-value/versions \
 -H "Content-Type: application/vnd.schemaregistry.v1+json" \
 -d @-
