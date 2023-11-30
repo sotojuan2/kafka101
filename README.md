@@ -271,6 +271,12 @@ confluent-hub install confluentinc/kafka-connect-jdbc:latest
 
 (Choose option 2 and after say yes to everything when prompted.)
 
+Now we need to restart our connect:
+
+```bash
+docker compose restart connect
+```
+
 Now if we list our plugins again we should see two new ones corresponding to the JDBC connector.
 
 We will need a postgres database so let's cd into the postgres folder in another shell and execute:
@@ -293,7 +299,7 @@ password: password
 Let's create a source connector using datagen from the controlcenter.
 
 ```bash
-ccurl -i -X PUT -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/my-datagen-source/config -d '{
+curl -i -X PUT -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/my-datagen-source/config -d '{
     "name" : "my-datagen-source",
     "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
     "kafka.topic" : "products",
