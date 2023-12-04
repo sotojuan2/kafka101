@@ -202,19 +202,19 @@ Once it has consumed all messages in the topic run in parallel the io.confluent.
 
 ## Consumer Groups
 
-You could now stop the containers:
+You can check the demo https://github.com/tomasalmeida/kafka-partition-assignment-examples
+
+If you do it you could now stop the containers:
 
 ```bash
 docker compose down -v
 ```
 
-And check the demo https://github.com/tomasalmeida/kafka-partition-assignment-examples
-
 ## Connect
 
 ### Setup
 
-Let's start our containers again:
+If you stopped the containers before let's start our containers again:
 
 ```bash
 docker compose up -d

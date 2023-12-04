@@ -18,7 +18,7 @@ import java.util.Properties;
 public class BasicConsumer {
     private static final Logger log = LoggerFactory.getLogger(BasicConsumer.class);
 
-    private static final String SERVER = "localhost:19092";
+    private static final String SERVER = "localhost:19092,localhost:29092";
     private static final String TOPIC = "my-topic";
     private static final String GROUP_ID = "basic-consumer";
 

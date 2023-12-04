@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class BasicProducer {
     private static final Logger log = LoggerFactory.getLogger(BasicProducer.class);
-    public static final String BOOTSTRAP_SERVERS = "localhost:19092";
+    public static final String BOOTSTRAP_SERVERS = "localhost:19092,localhost:29092";
     private static boolean running = true;
     private static final long SLEEP_TIME_MS = 500;
     private static final String TOPIC = "my-topic";
