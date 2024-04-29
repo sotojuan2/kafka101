@@ -21,6 +21,7 @@ public class AvroProducer {
     public static void main(String[] args) throws IOException {
         Properties properties = new Properties();
         properties.load(AvroProducer.class.getResourceAsStream("/configuration.properties"));
+        properties.put("context.name.strategy",ExampleContextNameStrategy.class.getName());
 
         Producer<String, Customer> producer = new KafkaProducer<>(properties);
 

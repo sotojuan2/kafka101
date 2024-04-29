@@ -10,21 +10,26 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+
+
 public class AvroConsumer {
     private static final Logger log = LoggerFactory.getLogger(AvroConsumer.class);
-    private static final String TOPIC = "customers";
+    //private static final String TOPIC = "test-customers";
+    private static final List<String> TOPICS = Arrays.asList("test-customers", "customers");
 
     public static void main(String[] args) throws IOException {
         Properties properties = new Properties();
         properties.load(AvroConsumer.class.getResourceAsStream("/configuration.properties"));
+        //properties.put("context.name.strategy",ExampleContextNameStrategy.class.getName());
 
         KafkaConsumer<String, Customer> consumer = new KafkaConsumer<>(properties);
 
         try {
-            consumer.subscribe(List.of(TOPIC));
+            consumer.subscribe(TOPICS);
 
             final Thread mainThread = Thread.currentThread();
 
@@ -46,9 +51,9 @@ public class AvroConsumer {
             while (true) {
                 ConsumerRecords<String, Customer> records = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, Customer> record : records) {
-                    log.info("Message with name={}, age={} - Partition-{} - Offset {}", record.key(),
+                    log.info("Message with name={}, age={} - Partition-{} - Offset {} - topic {}", record.key(),
                             record.value().getAge(),
-                            record.partition(),record.offset());
+                            record.partition(),record.offset(),record.topic());
                 }
             }
         } catch (WakeupException e) {
