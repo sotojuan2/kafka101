@@ -1,7 +1,46 @@
-# Kafka 1o1
+# Specifying a context name for clients
 
-Introduction Kafka 1o1.
+When using a client to talk to Schema Registry, you may want the client to use a particular context. 
+The easy approach is to simply change the Schema Registry URL used by the client from https://<host1> to https://<host2>/contexts/.mycontext.
 
+In case you have a client where you have to read or write in two or more topics in different context, you can use the following example.
+
+To achieve this, you can specify a context name strategy to the serializer or deserializer.
+
+There are two main iteam in this example:
+
+1 - Client side
+Add the property or cunsumer property context.name.strategy 
+
+```java
+    properties.load(AvroProducer.class.getResourceAsStream("/configuration.properties"));
+    properties.put("context.name.strategy",ExampleContextNameStrategy.class.getName());
+```
+
+2 - ContextName 
+
+The class named **ExampleContextNameStrategy** has the implementation
+```java
+package io.confluent.csta.kafka101.avro;
+
+import java.util.Map;
+import io.confluent.kafka.serializers.context.strategy.ContextNameStrategy;
+
+public class ExampleContextNameStrategy implements ContextNameStrategy {
+    public void configure(Map<String, ?> configs) {
+    }
+    public String contextName(String topic) {
+      if (topic.startsWith("test-")) {
+        return "test";
+      } else {
+          return "";
+      }
+    }
+}
+ 
+
+
+```
 ## Setup
 
 ### Start Docker Compose
@@ -43,97 +82,23 @@ If that's not the case in general executing `up -d` again should suffice.
 
 Open http://localhost:9021 and check cluster is healthy
 
-### Create First Topic
+
+
+### Update configuration properties
+
+Update the configuration properties if it is need it
+
+### Compile java
 
 ```bash
-kafka-topics --bootstrap-server localhost:19092 --create \
---topic my-topic \
---replication-factor 3 \
---partitions 6
+mvn package
 ```
-
-You can describe the topic to check how partitions got distributed:
-
-```bash
-kafka-topics --bootstrap-server localhost:19092 --topic my-topic --describe
-```
-
-You should get something like this:
-
-```text
-Topic: my-topic	TopicId: z7s7bS2oTGiTvmTDuShdmQ	PartitionCount: 6	 ReplicationFactor: 3	 Configs:
-	Topic: my-topic	Partition: 0	Leader: 4	Replicas: 4,3,1	 Isr: 4,3,1	 Offline:
-	Topic: my-topic	Partition: 1	Leader: 1	Replicas: 1,4,2	 Isr: 1,4,2	 Offline:
-	Topic: my-topic	Partition: 2	Leader: 2	Replicas: 2,1,3	 Isr: 2,1,3	 Offline:
-	Topic: my-topic	Partition: 3	Leader: 3	Replicas: 3,2,4	 Isr: 3,2,4	 Offline:
-	Topic: my-topic	Partition: 4	Leader: 4	Replicas: 4,1,2	 Isr: 4,1,2	 Offline:
-	Topic: my-topic	Partition: 5	Leader: 1	Replicas: 1,2,3	 Isr: 1,2,3	 Offline:
-```
-
-### Command line producer-consumer
-
-To produce some test messages in one shell we can execute:
-
-```bash
-kafka-producer-perf-test --topic my-topic --num-records 600000 --record-size 100 --throughput 10000 --producer-props bootstrap.servers=localhost:19092
-```
-
-And in another shell we can execute the console consumer:
-
-```bash
-kafka-console-consumer --bootstrap-server localhost:19092 --topic my-topic --from-beginning --property print.timestamp=true --property print.value=true
-```
-
-After messages produced you can see the consumer console will still be waiting for more messages.
-
-We can run another smaller batch of messages production and see our console consumer will consume them:
-
-```bash
-kafka-producer-perf-test --topic my-topic --num-records 10000 --record-size 100 --throughput 10000 --producer-props bootstrap.servers=localhost:19092
-```
-
-## Java Basic Producer
-
-Now let's execute the class io.confluent.csta.kafka101.basic.BasicProducer.
-
-You should see on the console output something like this:
-
-```text
-INFO - 2023-11-28 22:01:59,494 - io.confluent.csta.kafka101.basic.BasicProducer:50 - Sent key=10, value=ohYtUMGLBl - Partition-1 - Offset 99048  
-INFO - 2023-11-28 22:01:59,992 - io.confluent.csta.kafka101.basic.BasicProducer:50 - Sent key=19, value=GEKp5GZH1z - Partition-2 - Offset 99156   
-```
-
-And in one of our shells lets execute the consumer:
-
-```bash
-kafka-console-consumer --bootstrap-server localhost:19092 \
---topic my-topic --property print.timestamp=true \
---property print.value=true \
---property print.key=true \
---property key.deserializer=org.apache.kafka.common.serialization.IntegerDeserializer
-```
-
-In another shell describe the topic:
-
-```bash
-kafka-topics --bootstrap-server localhost:19092 --topic my-topic --describe
-```
-
-Now meanwhile producer and consumer are executing let's stop one of the kafka broker instances:
-
-```bash
-docker compose stop kafka4
-```
-
-Check producer and consumer still executing.
-
-Execute describe of the topic again.
 
 ## Avro Schema Based Producer
 
 ### Register Schema
 
-First lets register our schema against Schema Registry:
+First lets register our schema against Schema Registry on the Default context:
 
 ```bash
 jq '. | {schema: tojson}' src/main/resources/avro/customer.avsc | \
@@ -147,6 +112,19 @@ You should see as response:
 ```text
 {"id":1}
 ```
+
+```bash
+jq '. | {schema: tojson}' src/main/resources/avro/customer.avsc | \
+curl -X POST http://localhost:8081/subjects/:.test:test-customers-value/versions \
+-H "Content-Type: application/vnd.schemaregistry.v1+json" \
+-d @-
+```
+You should see as response:
+
+```text
+{"id":1}
+```
+
 
 You can also check schema was registered by executing:
 
@@ -162,6 +140,10 @@ curl -s http://localhost:8081/subjects/customers-value/versions
 curl -s http://localhost:8081/subjects/customers-value/versions/1
 ```
 
+```bash
+curl -s http://localhost:8081/contexts
+```
+
 ### Create Topic
 
 Let's create our topic:
@@ -173,185 +155,38 @@ kafka-topics --bootstrap-server localhost:19092 --create \
 --partitions 6
 ```
 
-### Run Producer
-
-Now let's run our producer io.confluent.csta.kafka101.avro.AvroProducer.
-
-And check with consumer:
+Let's create our second topic
 
 ```bash
-kafka-avro-console-consumer --topic customers \
---bootstrap-server 127.0.0.1:19092 \
---property schema.registry.url=http://127.0.0.1:8081 \
---from-beginning
+kafka-topics --bootstrap-server localhost:19092 --create \
+--topic test-customers \
+--replication-factor 3 \
+--partitions 6
 ```
 
-## Consumers
-
-### Basic Consumer
-
-Run the io.confluent.csta.kafka101.basic.BasicConsumer
-
-Once it has consumed all messages in the topic run in parallel the io.confluent.csta.kafka101.basic.BasicProducer
-
-### Avro Schema Based Consumer
-
-Run the io.confluent.csta.kafka101.avro.AvroConsumer
-
-Once it has consumed all messages in the topic run in parallel the io.confluent.csta.kafka101.avro.AvroProducer
-
-## Consumer Groups
-
-You can check the demo https://github.com/tomasalmeida/kafka-partition-assignment-examples
-
-If you do it you could now stop the containers:
+### Execute first producer
 
 ```bash
-docker compose down -v
+java -cp /workspaces/kafka101/target/kafka101-1.0-SNAPSHOT-jar-with-dependencies.jar io.confluent.csta.kafka101.avro.AvroProducer customers
 ```
 
-## Connect
-
-### Setup
-
-If you stopped the containers before let's start our containers again:
+### Execute second producer
 
 ```bash
-docker compose up -d
+java -cp /workspaces/kafka101/target/kafka101-1.0-SNAPSHOT-jar-with-dependencies.jar io.confluent.csta.kafka101.avro.AvroProducer test-customers
 ```
 
-Open http://localhost:9021 and confirm you have your connect server available.
-
-You can check the connector plugins available by executing:
+### Execute consumer
 
 ```bash
-curl localhost:8083/connector-plugins | jq
+java -cp /workspaces/kafka101/target/kafka101-1.0-SNAPSHOT-jar-with-dependencies.jar io.confluent.csta.kafka101.avro.AvroConsumer
 ```
 
-As you see we only have source connectors:
-
-```text
-[
-  {
-    "class": "io.confluent.kafka.connect.datagen.DatagenConnector",
-    "type": "source",
-    "version": "null"
-  },
-  {
-    "class": "org.apache.kafka.connect.mirror.MirrorCheckpointConnector",
-    "type": "source",
-    "version": "7.5.0-ce"
-  },
-  {
-    "class": "org.apache.kafka.connect.mirror.MirrorHeartbeatConnector",
-    "type": "source",
-    "version": "7.5.0-ce"
-  },
-  {
-    "class": "org.apache.kafka.connect.mirror.MirrorSourceConnector",
-    "type": "source",
-    "version": "7.5.0-ce"
-  }
-]
-```
-
-So let's install some connector sink plugin.
-
-For that we will open a shell into our connect container:
-
-```bash
-docker compose exec -it connect bash
-```
-
-Once inside the container we can install a new connector from confluent-hub:
-
-```bash
-confluent-hub install confluentinc/kafka-connect-jdbc:latest
-```
-
-(Choose option 2 and after say yes to everything when prompted.)
-
-Now we need to restart our connect:
-
-```bash
-docker compose restart connect
-```
-
-Now if we list our plugins again we should see two new ones corresponding to the JDBC connector.
-
-We will need a postgres database so let's cd into the postgres folder in another shell and execute:
-
-```bash
-docker compose up -d
-```
-
-Now with a postgres client as pgAdmin4 we can create connection to our database using:
-
-```text
-server: localhost
-port: 5432
-username: postgres
-password: password
-```
-
-### Source Connector
-
-Let's create a source connector using datagen from the controlcenter.
-
-```bash
-curl -i -X PUT -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/my-datagen-source/config -d '{
-    "name" : "my-datagen-source",
-    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
-    "kafka.topic" : "products",
-    "output.data.format" : "AVRO",
-    "quickstart" : "PRODUCT",
-    "tasks.max" : "1"
-}'
-```
-
-We can consume the topic products being populated by our connector:
-
-```bash
-kafka-avro-console-consumer --topic products \
---bootstrap-server 127.0.0.1:19092 \
---property schema.registry.url=http://127.0.0.1:8081 \
---from-beginning
-```
-
-### Sink Connector
-
-Now let's create a sink connector:
-
-```bash
-curl -i -X PUT -H "Accept:application/json" \
-    -H  "Content-Type:application/json" http://localhost:8083/connectors/my-sink-postgres/config \
-    -d '{
-          "connector.class"    : "io.confluent.connect.jdbc.JdbcSinkConnector",
-          "connection.url"     : "jdbc:postgresql://host.docker.internal:5432/postgres",
-          "connection.user"    : "postgres",
-          "connection.password": "password",
-          "topics"             : "products",
-          "tasks.max"          : "1",
-          "auto.create"        : "true",
-          "auto.evolve"        : "true"}'
-```
-
-Check that we are using for the URL host.docker.internal to point to the host from inside the container.
-
-Now if we check on our Postgres client the table products should have been created and we can execute a count:
-
-```sql
-select count(*) from products;
-```
-
-If you re-execute the statement you can see that the number increases as datagen connector keeps generating new entries.
 
 ## Cleanup
 
 From the root of the project:
 
 ```bash
-docker compose down -v
-cd postgres
 docker compose down -v
 ```

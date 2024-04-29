@@ -16,9 +16,16 @@ public class AvroProducer {
     private static final Logger log = LoggerFactory.getLogger(AvroProducer.class);
     private static boolean running = true;
     private static final long SLEEP_TIME_MS = 500;
-    private static final String TOPIC = "customers";
+    //private static final String TOPIC = "customers";
 
     public static void main(String[] args) throws IOException {
+        if (args.length != 1) {
+            System.out.println("Usage: java AvroProducer <topic>");
+            System.exit(1);
+        }
+
+        String TOPIC = args[0];
+
         Properties properties = new Properties();
         properties.load(AvroProducer.class.getResourceAsStream("/configuration.properties"));
         properties.put("context.name.strategy",ExampleContextNameStrategy.class.getName());
