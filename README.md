@@ -195,4 +195,4 @@ docker compose down -v
 
 ## KIP 848
 
-In a different branch there is an example of the new [KIP-848](http://192.168.1.200/Juan/kafka101/-/blob/KIP-848/kip-848/readme.md?ref_type=heads)
+In a different branch there is an example of the new [KIP-848](https://github.com/sotojuan2/kafka101/tree/KIP-848/kip-848)
