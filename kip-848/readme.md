@@ -168,7 +168,7 @@ java -cp /workspaces/kafka101/target/kafka101-1.0-SNAPSHOT-jar-with-dependencies
 
 A new consumer protocol consumer `6nc1qt8rSeyTwBh__vZELQ` joins. A new assignment is computed and the assignment is evenly split.
 
-````
+```
 [2024-11-11 09:38:40,249] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=33] [GroupId avro-consumer2] Computed a new target assignment for epoch 6 with 'uniform' assignor in 1ms: {6nc1qt8rSeyTwBh__vZELQ=MemberAssignment(partitions={8iWjCLGESE6MUiR5ANkArg=[0, 1, 2, 3, 4, 5]}), gjWzAEmmRlOfypB2_GB_9Q=MemberAssignment(partitions={7l8rBsX6TMqbHE6QgWshdw=[0, 1, 2, 3, 4, 5]})}. (org.apache.kafka.coordinator.group.GroupMetadataManager)
 ```
 
