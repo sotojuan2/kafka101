@@ -174,7 +174,7 @@ A new consumer protocol consumer `6nc1qt8rSeyTwBh__vZELQ` joins. A new assignmen
 
 The rebalance is completed
 
-````
+```
 [2024-11-11 09:38:40,966] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=33] [GroupId avro-consumer2] Member gjWzAEmmRlOfypB2_GB_9Q new assignment state: epoch=6, previousEpoch=5, state=STABLE, assignedPartitions=[7l8rBsX6TMqbHE6QgWshdw-0, 7l8rBsX6TMqbHE6QgWshdw-1, 7l8rBsX6TMqbHE6QgWshdw-2, 7l8rBsX6TMqbHE6QgWshdw-3, 7l8rBsX6TMqbHE6QgWshdw-4, 7l8rBsX6TMqbHE6QgWshdw-5] and revokedPartitions=[]. (org.apache.kafka.coordinator.group.GroupMetadataManager)
 [2024-11-11 09:38:45,273] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=33] [GroupId avro-consumer2] Member 6nc1qt8rSeyTwBh__vZELQ new assignment state: epoch=6, previousEpoch=6, state=STABLE, assignedPartitions=[8iWjCLGESE6MUiR5ANkArg-0, 8iWjCLGESE6MUiR5ANkArg-1, 8iWjCLGESE6MUiR5ANkArg-2, 8iWjCLGESE6MUiR5ANkArg-3, 8iWjCLGESE6MUiR5ANkArg-4, 8iWjCLGESE6MUiR5ANkArg-5] and revokedPartitions=[]. (org.apache.kafka.coordinator.group.GroupMetadataManager)
-````
+```
