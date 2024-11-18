@@ -190,3 +190,7 @@ From the root of the project:
 ```bash
 docker compose down -v
 ```
+
+# Addendum
+
+In case you want to play with [KIP-848](https://cwiki.apache.org/confluence/display/KAFKA/KIP-848%3A+The+Next+Generation+of+the+Consumer+Rebalance+Protocol) you have the [following instructions](kip-848/readme.md)
