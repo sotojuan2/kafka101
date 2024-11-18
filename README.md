@@ -190,3 +190,9 @@ From the root of the project:
 ```bash
 docker compose down -v
 ```
+
+# Addendum 
+
+## KIP 848
+
+In a different branch there is an example of the new [KIP-848](http://192.168.1.200/Juan/kafka101/-/blob/KIP-848/kip-848/readme.md?ref_type=heads)
