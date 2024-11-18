@@ -19,11 +19,12 @@ import java.util.Properties;
 public class AvroConsumer {
     private static final Logger log = LoggerFactory.getLogger(AvroConsumer.class);
     //private static final String TOPIC = "test-customers";
-    private static final List<String> TOPICS = Arrays.asList("test-customers", "customers");
+    private static final List<String> TOPICS = Arrays.asList( "customers");
 
     public static void main(String[] args) throws IOException {
         Properties properties = new Properties();
         properties.load(AvroConsumer.class.getResourceAsStream("/configuration.properties"));
+        properties.put("group.id", "jsoto-consumer-group");
         //properties.put("context.name.strategy",ExampleContextNameStrategy.class.getName());
 
         KafkaConsumer<String, Customer> consumer = new KafkaConsumer<>(properties);

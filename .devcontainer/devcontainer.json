@@ -15,7 +15,8 @@
 	"runArgs": [
 		"--hostname=kafka101",
 		"--name=kafka101",
-		"--network=kafka101_default"
+		//"--network=kafka101_default"
+		"--network=kip-848_default"
 	],
 	"customizations": {
 		"vscode": {

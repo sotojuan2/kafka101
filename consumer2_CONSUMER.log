@@ -1,0 +1,407 @@
+INFO - 2024-11-11 09:38:39,453 - org.apache.kafka.clients.consumer.ConsumerConfig:372 - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [kafka1:29092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = avro-producer
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = avro-consumer2
+	group.instance.id = null
+	group.protocol = CONSUMER
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class io.confluent.kafka.serializers.KafkaAvroDeserializer
+  
+INFO - 2024-11-11 09:38:39,526 - org.apache.kafka.common.telemetry.internals.KafkaMetricsCollector:269 - initializing Kafka metrics collector  
+INFO - 2024-11-11 09:38:39,676 - io.confluent.kafka.serializers.KafkaAvroDeserializerConfig:372 - KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = false
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://schema-registry:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = true
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+  
+INFO - 2024-11-11 09:38:39,677 - io.confluent.kafka.serializers.KafkaAvroDeserializerConfig:372 - KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = false
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://schema-registry:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = true
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+  
+INFO - 2024-11-11 09:38:39,978 - org.apache.kafka.clients.consumer.ConsumerConfig:381 - These configurations '[enable.idempotence, auto.register.schemas, acks, max.inflight.requests.per.connection, specific.avro.reader, key.serializer, schema.registry.url, value.serializer, use.latest.version, reties, auto.commit.enable]' were supplied but are not used yet.  
+INFO - 2024-11-11 09:38:39,980 - org.apache.kafka.common.utils.AppInfoParser:124 - Kafka version: 3.8.1  
+INFO - 2024-11-11 09:38:39,980 - org.apache.kafka.common.utils.AppInfoParser:125 - Kafka commitId: 70d6ff42debf7e17  
+INFO - 2024-11-11 09:38:39,981 - org.apache.kafka.common.utils.AppInfoParser:126 - Kafka startTimeMs: 1731317919979  
+INFO - 2024-11-11 09:38:39,983 - org.apache.kafka.clients.consumer.internals.AsyncKafkaConsumer:1826 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Subscribed to topic(s): test-customers, customers  
+INFO - 2024-11-11 09:38:40,233 - org.apache.kafka.clients.Metadata:364 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk  
+INFO - 2024-11-11 09:38:40,235 - org.apache.kafka.clients.consumer.internals.CoordinatorRequestManager:162 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Discovered group coordinator Coordinator(key='avro-consumer2', nodeId=1, host='kafka1', port=29092, errorCode=0, errorMessage='')  
+INFO - 2024-11-11 09:38:40,265 - org.apache.kafka.clients.consumer.internals.MembershipManagerImpl:962 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Reconciling assignment with local epoch 6nc1qt8rSeyTwBh__vZELQ
+	Member:                                    0
+	Assigned partitions:                       []
+	Current owned partitions:                  []
+	Added partitions (assigned - owned):       []
+	Revoked partitions (owned - assigned):     []
+  
+INFO - 2024-11-11 09:38:45,293 - org.apache.kafka.clients.consumer.internals.MembershipManagerImpl:962 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Reconciling assignment with local epoch 6nc1qt8rSeyTwBh__vZELQ
+	Member:                                    1
+	Assigned partitions:                       [customers-0, customers-1, customers-2, customers-3, customers-4, customers-5]
+	Current owned partitions:                  []
+	Added partitions (assigned - owned):       [customers-0, customers-1, customers-2, customers-3, customers-4, customers-5]
+	Revoked partitions (owned - assigned):     []
+  
+INFO - 2024-11-11 09:38:45,319 - org.apache.kafka.clients.consumer.internals.ConsumerUtils:201 - Setting offset for partition customers-0 to the committed offset FetchPosition{offset=68, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[kafka3:49092 (id: 3 rack: null)], epoch=0}}  
+INFO - 2024-11-11 09:38:45,320 - org.apache.kafka.clients.consumer.internals.ConsumerUtils:201 - Setting offset for partition customers-2 to the committed offset FetchPosition{offset=55, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[kafka2:39092 (id: 2 rack: null)], epoch=0}}  
+INFO - 2024-11-11 09:38:45,321 - org.apache.kafka.clients.consumer.internals.ConsumerUtils:201 - Setting offset for partition customers-1 to the committed offset FetchPosition{offset=64, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[kafka1:29092 (id: 1 rack: null)], epoch=0}}  
+INFO - 2024-11-11 09:38:45,321 - org.apache.kafka.clients.consumer.internals.ConsumerUtils:201 - Setting offset for partition customers-4 to the committed offset FetchPosition{offset=54, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[kafka3:49092 (id: 3 rack: null)], epoch=0}}  
+INFO - 2024-11-11 09:38:45,321 - org.apache.kafka.clients.consumer.internals.ConsumerUtils:201 - Setting offset for partition customers-3 to the committed offset FetchPosition{offset=52, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[kafka1:29092 (id: 1 rack: null)], epoch=0}}  
+INFO - 2024-11-11 09:38:45,321 - org.apache.kafka.clients.consumer.internals.ConsumerUtils:201 - Setting offset for partition customers-5 to the committed offset FetchPosition{offset=78, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[kafka2:39092 (id: 2 rack: null)], epoch=0}}  
+INFO - 2024-11-11 09:38:45,801 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=DUX AAXJ7, age=33 - Partition-2 - Offset 55 - topic customers  
+INFO - 2024-11-11 09:38:45,802 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=XQF QIZS4, age=64 - Partition-2 - Offset 56 - topic customers  
+INFO - 2024-11-11 09:38:45,802 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=D0X AUMC2, age=74 - Partition-1 - Offset 64 - topic customers  
+INFO - 2024-11-11 09:38:45,802 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=6HF YVP9F, age=76 - Partition-1 - Offset 65 - topic customers  
+INFO - 2024-11-11 09:38:45,802 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=IEA PSVDV, age=78 - Partition-3 - Offset 52 - topic customers  
+INFO - 2024-11-11 09:38:45,802 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=5FL HVJCT, age=93 - Partition-3 - Offset 53 - topic customers  
+INFO - 2024-11-11 09:38:45,803 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=WYN ZJ905, age=75 - Partition-3 - Offset 54 - topic customers  
+INFO - 2024-11-11 09:38:45,803 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=9GH IMGXA, age=22 - Partition-5 - Offset 78 - topic customers  
+INFO - 2024-11-11 09:38:45,804 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=TWY XHXET, age=0 - Partition-5 - Offset 79 - topic customers  
+INFO - 2024-11-11 09:38:45,945 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=VH4 7CRRP, age=31 - Partition-0 - Offset 68 - topic customers  
+INFO - 2024-11-11 09:38:46,436 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=LU7 XMGC3, age=55 - Partition-3 - Offset 55 - topic customers  
+INFO - 2024-11-11 09:38:46,946 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=MPW 7JSSD, age=14 - Partition-0 - Offset 69 - topic customers  
+INFO - 2024-11-11 09:38:47,446 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=WOI 5WAQ3, age=53 - Partition-1 - Offset 66 - topic customers  
+INFO - 2024-11-11 09:38:47,946 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=JRB XK6TP, age=71 - Partition-3 - Offset 56 - topic customers  
+INFO - 2024-11-11 09:38:48,457 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=D0Y FV1AQ, age=68 - Partition-2 - Offset 57 - topic customers  
+INFO - 2024-11-11 09:38:48,953 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=LHR HO3GH, age=70 - Partition-3 - Offset 57 - topic customers  
+INFO - 2024-11-11 09:38:49,453 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=UWL HVTMB, age=57 - Partition-3 - Offset 58 - topic customers  
+INFO - 2024-11-11 09:38:49,968 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=FBV OR8XV, age=39 - Partition-2 - Offset 58 - topic customers  
+INFO - 2024-11-11 09:38:50,459 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=LJQ KKF8G, age=86 - Partition-1 - Offset 67 - topic customers  
+INFO - 2024-11-11 09:38:50,987 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=AZY INYSP, age=95 - Partition-3 - Offset 59 - topic customers  
+INFO - 2024-11-11 09:38:51,481 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=IIA GHZ1C, age=32 - Partition-4 - Offset 54 - topic customers  
+INFO - 2024-11-11 09:38:52,501 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=B1P A0TNB, age=36 - Partition-0 - Offset 70 - topic customers  
+INFO - 2024-11-11 09:38:52,503 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=DA3 4AAIH, age=21 - Partition-5 - Offset 80 - topic customers  
+INFO - 2024-11-11 09:38:52,997 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=Z6P NQEKN, age=38 - Partition-0 - Offset 71 - topic customers  
+INFO - 2024-11-11 09:38:53,482 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=3WF FA12H, age=58 - Partition-4 - Offset 55 - topic customers  
+INFO - 2024-11-11 09:38:53,986 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=FQS K9P3S, age=5 - Partition-1 - Offset 68 - topic customers  
+INFO - 2024-11-11 09:38:54,487 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=GQO QDO87, age=65 - Partition-5 - Offset 81 - topic customers  
+INFO - 2024-11-11 09:38:54,995 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=7XY YRUO3, age=77 - Partition-4 - Offset 56 - topic customers  
+INFO - 2024-11-11 09:38:55,504 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=FNH O4TVN, age=74 - Partition-1 - Offset 69 - topic customers  
+INFO - 2024-11-11 09:38:55,988 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=WPE QJGJP, age=87 - Partition-4 - Offset 57 - topic customers  
+INFO - 2024-11-11 09:38:56,491 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=HN9 KRK7D, age=27 - Partition-3 - Offset 60 - topic customers  
+INFO - 2024-11-11 09:38:57,501 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=J0G 7F75T, age=5 - Partition-4 - Offset 58 - topic customers  
+INFO - 2024-11-11 09:38:57,502 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=TZT 0C8FV, age=38 - Partition-0 - Offset 72 - topic customers  
+INFO - 2024-11-11 09:38:58,518 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=VCU CQ5VW, age=89 - Partition-4 - Offset 59 - topic customers  
+INFO - 2024-11-11 09:38:58,544 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=G9R MOOCL, age=66 - Partition-2 - Offset 59 - topic customers  
+INFO - 2024-11-11 09:38:59,008 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=SGJ ZW6IK, age=45 - Partition-1 - Offset 70 - topic customers  
+INFO - 2024-11-11 09:38:59,529 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=DZX 8NVTC, age=66 - Partition-0 - Offset 73 - topic customers  
+INFO - 2024-11-11 09:39:00,010 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=L0I W9OGU, age=60 - Partition-1 - Offset 71 - topic customers  
+INFO - 2024-11-11 09:39:00,514 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=MPA YK6WZ, age=61 - Partition-1 - Offset 72 - topic customers  
+INFO - 2024-11-11 09:39:01,014 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=5ZA 8SYPI, age=7 - Partition-5 - Offset 82 - topic customers  
+INFO - 2024-11-11 09:39:01,541 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=YSY XBC2U, age=26 - Partition-4 - Offset 60 - topic customers  
+INFO - 2024-11-11 09:39:02,019 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=VGO VXEEH, age=54 - Partition-1 - Offset 73 - topic customers  
+INFO - 2024-11-11 09:39:03,030 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=VGI GWNUZ, age=97 - Partition-2 - Offset 60 - topic customers  
+INFO - 2024-11-11 09:39:03,538 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=LSU 7TAU3, age=91 - Partition-1 - Offset 74 - topic customers  
+INFO - 2024-11-11 09:39:04,034 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=SEZ L4NP9, age=42 - Partition-0 - Offset 74 - topic customers  
+INFO - 2024-11-11 09:39:04,038 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=GSJ W17P2, age=67 - Partition-5 - Offset 83 - topic customers  
+INFO - 2024-11-11 09:39:04,536 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=WIF L1HLU, age=69 - Partition-3 - Offset 61 - topic customers  
+INFO - 2024-11-11 09:39:05,035 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=2E1 JDPNY, age=52 - Partition-3 - Offset 62 - topic customers  
+INFO - 2024-11-11 09:39:05,534 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=7N4 1NY6X, age=65 - Partition-1 - Offset 75 - topic customers  
+INFO - 2024-11-11 09:39:06,038 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=MG2 HUJIY, age=77 - Partition-1 - Offset 76 - topic customers  
+INFO - 2024-11-11 09:39:06,543 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=HTD KT5CB, age=11 - Partition-0 - Offset 75 - topic customers  
+INFO - 2024-11-11 09:39:07,047 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=FXV AD1GB, age=100 - Partition-0 - Offset 76 - topic customers  
+INFO - 2024-11-11 09:39:07,545 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=WLY T2RDQ, age=60 - Partition-4 - Offset 61 - topic customers  
+INFO - 2024-11-11 09:39:08,046 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=OBW OTJWA, age=84 - Partition-5 - Offset 84 - topic customers  
+INFO - 2024-11-11 09:39:08,545 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=ZLD JNPHM, age=28 - Partition-2 - Offset 61 - topic customers  
+INFO - 2024-11-11 09:39:09,049 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=RCY AWGIM, age=62 - Partition-2 - Offset 62 - topic customers  
+INFO - 2024-11-11 09:39:09,548 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=8LY 0LVOZ, age=87 - Partition-3 - Offset 63 - topic customers  
+INFO - 2024-11-11 09:39:10,055 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=RJL ZPB25, age=67 - Partition-0 - Offset 77 - topic customers  
+INFO - 2024-11-11 09:39:10,554 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=YA6 NQYUL, age=37 - Partition-5 - Offset 85 - topic customers  
+INFO - 2024-11-11 09:39:11,050 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=X55 CNTKC, age=17 - Partition-2 - Offset 63 - topic customers  
+INFO - 2024-11-11 09:39:11,554 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=XMD 0YTJD, age=6 - Partition-3 - Offset 64 - topic customers  
+INFO - 2024-11-11 09:39:12,056 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=WJB X699M, age=80 - Partition-5 - Offset 86 - topic customers  
+INFO - 2024-11-11 09:39:13,064 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=NWU NJNWC, age=74 - Partition-2 - Offset 64 - topic customers  
+INFO - 2024-11-11 09:39:13,563 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=A2N PBA27, age=92 - Partition-3 - Offset 65 - topic customers  
+INFO - 2024-11-11 09:39:13,566 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=SON WAD9S, age=15 - Partition-1 - Offset 77 - topic customers  
+INFO - 2024-11-11 09:39:14,070 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=B5B 6TSQA, age=32 - Partition-1 - Offset 78 - topic customers  
+INFO - 2024-11-11 09:39:14,575 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=XYE OKVNB, age=47 - Partition-4 - Offset 62 - topic customers  
+INFO - 2024-11-11 09:39:15,075 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=EGV BQX0A, age=61 - Partition-0 - Offset 78 - topic customers  
+INFO - 2024-11-11 09:39:15,578 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=W4I QPYMM, age=61 - Partition-3 - Offset 66 - topic customers  
+INFO - 2024-11-11 09:39:16,075 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=M5U KF2OB, age=29 - Partition-1 - Offset 79 - topic customers  
+INFO - 2024-11-11 09:39:16,582 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=9OM B8FQZ, age=59 - Partition-4 - Offset 63 - topic customers  
+INFO - 2024-11-11 09:39:17,586 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=VBN X6MSY, age=29 - Partition-4 - Offset 64 - topic customers  
+INFO - 2024-11-11 09:39:17,588 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=HM1 CFDU6, age=5 - Partition-1 - Offset 80 - topic customers  
+INFO - 2024-11-11 09:39:18,092 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=6SS MMEGV, age=22 - Partition-4 - Offset 65 - topic customers  
+INFO - 2024-11-11 09:39:18,596 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=DXQ OU50X, age=13 - Partition-4 - Offset 66 - topic customers  
+INFO - 2024-11-11 09:39:19,099 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=T72 NWTVC, age=77 - Partition-1 - Offset 81 - topic customers  
+INFO - 2024-11-11 09:39:19,601 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=YQY H0RIA, age=27 - Partition-2 - Offset 65 - topic customers  
+INFO - 2024-11-11 09:39:20,104 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=EG9 N79DE, age=84 - Partition-2 - Offset 66 - topic customers  
+INFO - 2024-11-11 09:39:20,607 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=VAN NOJNA, age=28 - Partition-2 - Offset 67 - topic customers  
+INFO - 2024-11-11 09:39:21,109 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=9YL IAM9O, age=26 - Partition-2 - Offset 68 - topic customers  
+INFO - 2024-11-11 09:39:21,607 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=OBB FRFJ5, age=33 - Partition-4 - Offset 67 - topic customers  
+INFO - 2024-11-11 09:39:22,110 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=OXL B2LUK, age=66 - Partition-4 - Offset 68 - topic customers  
+INFO - 2024-11-11 09:39:23,127 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=JIV 3IHSB, age=55 - Partition-0 - Offset 79 - topic customers  
+INFO - 2024-11-11 09:39:23,640 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=7RD 2K25X, age=65 - Partition-0 - Offset 80 - topic customers  
+INFO - 2024-11-11 09:39:23,640 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=R8J YIXQA, age=18 - Partition-1 - Offset 82 - topic customers  
+INFO - 2024-11-11 09:39:24,144 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=SPI SIJPI, age=75 - Partition-0 - Offset 81 - topic customers  
+INFO - 2024-11-11 09:39:24,646 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=XO2 MIE0I, age=0 - Partition-2 - Offset 69 - topic customers  
+INFO - 2024-11-11 09:39:25,150 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=ULM FIQ8V, age=34 - Partition-4 - Offset 69 - topic customers  
+INFO - 2024-11-11 09:39:25,652 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=NFE QQYM2, age=62 - Partition-5 - Offset 87 - topic customers  
+INFO - 2024-11-11 09:39:26,141 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=FH9 PLPF6, age=74 - Partition-2 - Offset 70 - topic customers  
+INFO - 2024-11-11 09:39:26,644 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=J73 KXQ2H, age=41 - Partition-2 - Offset 71 - topic customers  
+INFO - 2024-11-11 09:39:27,146 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=8ZP JA40J, age=87 - Partition-1 - Offset 83 - topic customers  
+INFO - 2024-11-11 09:39:27,648 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=F0D 4X5Q7, age=4 - Partition-5 - Offset 88 - topic customers  
+INFO - 2024-11-11 09:39:28,147 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=PEK PO8AL, age=29 - Partition-2 - Offset 72 - topic customers  
+INFO - 2024-11-11 09:39:28,655 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=XLH F8ZNQ, age=42 - Partition-3 - Offset 67 - topic customers  
+INFO - 2024-11-11 09:39:29,154 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=I2R U5DOG, age=100 - Partition-4 - Offset 70 - topic customers  
+INFO - 2024-11-11 09:39:29,657 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=YC1 PHF2G, age=4 - Partition-1 - Offset 84 - topic customers  
+INFO - 2024-11-11 09:39:30,156 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=ACM HYHEA, age=94 - Partition-4 - Offset 71 - topic customers  
+INFO - 2024-11-11 09:39:30,664 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=NCN Q7WLV, age=48 - Partition-5 - Offset 89 - topic customers  
+INFO - 2024-11-11 09:39:31,166 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=CDW NGXZB, age=83 - Partition-1 - Offset 85 - topic customers  
+INFO - 2024-11-11 09:39:31,667 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=WLW OXLRL, age=47 - Partition-5 - Offset 90 - topic customers  
+INFO - 2024-11-11 09:39:32,164 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=QIV 2OANI, age=55 - Partition-3 - Offset 68 - topic customers  
+INFO - 2024-11-11 09:39:32,666 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=GSX WX1MW, age=17 - Partition-5 - Offset 91 - topic customers  
+INFO - 2024-11-11 09:39:33,171 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=YU6 5XPBN, age=15 - Partition-4 - Offset 72 - topic customers  
+INFO - 2024-11-11 09:39:33,670 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=0BB KFC9T, age=40 - Partition-2 - Offset 73 - topic customers  
+INFO - 2024-11-11 09:39:34,176 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=D9V OP3HE, age=17 - Partition-2 - Offset 74 - topic customers  
+INFO - 2024-11-11 09:39:34,679 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=I8X WX6PR, age=23 - Partition-4 - Offset 73 - topic customers  
+INFO - 2024-11-11 09:39:35,179 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=BUK FTATC, age=68 - Partition-0 - Offset 82 - topic customers  
+INFO - 2024-11-11 09:39:35,678 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=QH2 DFGCZ, age=28 - Partition-3 - Offset 69 - topic customers  
+INFO - 2024-11-11 09:39:36,179 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=8KT KI3UQ, age=24 - Partition-5 - Offset 92 - topic customers  
+INFO - 2024-11-11 09:39:36,685 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=QG7 SYLDG, age=97 - Partition-4 - Offset 74 - topic customers  
+INFO - 2024-11-11 09:39:37,191 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=V69 OJ8TP, age=19 - Partition-1 - Offset 86 - topic customers  
+INFO - 2024-11-11 09:39:37,694 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=MEK 9YCWG, age=32 - Partition-2 - Offset 75 - topic customers  
+INFO - 2024-11-11 09:39:38,196 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=4RR ASZUP, age=59 - Partition-2 - Offset 76 - topic customers  
+INFO - 2024-11-11 09:39:38,694 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=7CJ 5GRKK, age=13 - Partition-5 - Offset 93 - topic customers  
+INFO - 2024-11-11 09:39:39,196 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=5JO DTZRT, age=38 - Partition-3 - Offset 70 - topic customers  
+INFO - 2024-11-11 09:39:39,703 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=N4U AQLDR, age=14 - Partition-3 - Offset 71 - topic customers  
+INFO - 2024-11-11 09:39:40,200 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=0VO QZS8Q, age=48 - Partition-2 - Offset 77 - topic customers  
+INFO - 2024-11-11 09:39:40,705 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=GGC 3PYFG, age=92 - Partition-5 - Offset 94 - topic customers  
+INFO - 2024-11-11 09:39:41,202 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=GMP 6BQNK, age=81 - Partition-2 - Offset 78 - topic customers  
+INFO - 2024-11-11 09:39:41,706 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=OGN C4CTW, age=92 - Partition-1 - Offset 87 - topic customers  
+INFO - 2024-11-11 09:39:42,209 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=SGD KQBK7, age=93 - Partition-0 - Offset 83 - topic customers  
+INFO - 2024-11-11 09:39:42,710 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=RDZ AKNCO, age=53 - Partition-2 - Offset 79 - topic customers  
+INFO - 2024-11-11 09:39:43,212 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=PQI O8ILG, age=7 - Partition-5 - Offset 95 - topic customers  
+INFO - 2024-11-11 09:39:43,714 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=PVA SCRDG, age=90 - Partition-4 - Offset 75 - topic customers  
+INFO - 2024-11-11 09:39:44,744 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=FQX 9BUOG, age=29 - Partition-0 - Offset 84 - topic customers  
+INFO - 2024-11-11 09:39:45,234 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=BBW PFDVK, age=73 - Partition-2 - Offset 80 - topic customers  
+INFO - 2024-11-11 09:39:45,241 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=DQS UOUC6, age=55 - Partition-0 - Offset 85 - topic customers  
+INFO - 2024-11-11 09:39:45,739 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=H2T DSZNU, age=21 - Partition-1 - Offset 88 - topic customers  
+INFO - 2024-11-11 09:39:46,240 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=UIE EEKNQ, age=75 - Partition-4 - Offset 76 - topic customers  
+INFO - 2024-11-11 09:39:46,751 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=MBS XM6SO, age=20 - Partition-2 - Offset 81 - topic customers  
+INFO - 2024-11-11 09:39:47,246 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=AB4 WG74U, age=18 - Partition-5 - Offset 96 - topic customers  
+INFO - 2024-11-11 09:39:47,750 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=SSP UNQFL, age=47 - Partition-4 - Offset 77 - topic customers  
+INFO - 2024-11-11 09:39:48,251 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=4YQ UNVYR, age=35 - Partition-0 - Offset 86 - topic customers  
+INFO - 2024-11-11 09:39:48,760 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=5ES EIYHO, age=70 - Partition-5 - Offset 97 - topic customers  
+INFO - 2024-11-11 09:39:49,248 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=QMR ANKXU, age=23 - Partition-2 - Offset 82 - topic customers  
+INFO - 2024-11-11 09:39:49,749 - io.confluent.csta.kafka101.avro.AvroConsumer:54 - Message with name=7AI LAIPE, age=50 - Partition-5 - Offset 98 - topic customers  
+INFO - 2024-11-11 09:39:49,770 - io.confluent.csta.kafka101.avro.AvroConsumer:39 - Detected a shutdown, let's exit by calling consumer.wakeup()...  
+INFO - 2024-11-11 09:39:49,776 - io.confluent.csta.kafka101.avro.AvroConsumer:60 - Wake up exception!  
+INFO - 2024-11-11 09:39:49,777 - io.confluent.csta.kafka101.avro.AvroConsumer:65 - The consumer is now gracefully closed.  
+INFO - 2024-11-11 09:39:49,801 - org.apache.kafka.clients.consumer.internals.AsyncKafkaConsumer:1278 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Releasing assignment and leaving group before closing consumer  
+INFO - 2024-11-11 09:39:49,803 - org.apache.kafka.clients.consumer.internals.MembershipManagerImpl:1208 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Revoking previously assigned partitions customers-0, customers-2, customers-1, customers-4, customers-3, customers-5  
+INFO - 2024-11-11 09:39:49,806 - org.apache.kafka.clients.consumer.internals.AsyncKafkaConsumer:1283 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Completed releasing assignment and sending leave group to close consumer  
+INFO - 2024-11-11 09:39:50,260 - org.apache.kafka.clients.FetchSessionHandler:555 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Node 2 sent an invalid full fetch response with extraIds=(8iWjCLGESE6MUiR5ANkArg), response=()  
+INFO - 2024-11-11 09:39:50,263 - org.apache.kafka.clients.FetchSessionHandler:555 - [Consumer clientId=avro-producer, groupId=avro-consumer2] Node 3 sent an invalid full fetch response with extraIds=(8iWjCLGESE6MUiR5ANkArg), response=()  
+INFO - 2024-11-11 09:39:50,279 - org.apache.kafka.common.metrics.Metrics:684 - Metrics scheduler closed  
+INFO - 2024-11-11 09:39:50,279 - org.apache.kafka.common.metrics.Metrics:688 - Closing reporter org.apache.kafka.common.metrics.JmxReporter  
+INFO - 2024-11-11 09:39:50,280 - org.apache.kafka.common.metrics.Metrics:688 - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter  
+INFO - 2024-11-11 09:39:50,280 - org.apache.kafka.common.metrics.Metrics:694 - Metrics reporters closed  
+INFO - 2024-11-11 09:39:50,281 - org.apache.kafka.common.utils.AppInfoParser:88 - App info kafka.consumer for avro-producer unregistered  

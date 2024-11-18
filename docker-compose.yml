@@ -11,7 +11,7 @@ services:
       - ZOOKEEPER_TICK_TIME=2000
 
   kafka1:
-    image: confluentinc/cp-server:${TAG}
+    image: confluentinc/cp-kafka:${TAG}
     hostname: kafka1
     depends_on:
       - zookeeper
@@ -30,7 +30,7 @@ services:
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
 
   kafka2:
-    image: confluentinc/cp-server:${TAG}
+    image: confluentinc/cp-kafka:${TAG}
     hostname: kafka2
     depends_on:
       - zookeeper
@@ -49,7 +49,7 @@ services:
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
 
   kafka3:
-    image: confluentinc/cp-server:${TAG}
+    image: confluentinc/cp-kafka:${TAG}
     hostname: kafka3
     depends_on:
       - zookeeper
@@ -68,7 +68,7 @@ services:
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
 
   kafka4:
-    image: confluentinc/cp-server:${TAG}
+    image: confluentinc/cp-kafka:${TAG}
     hostname: kafka4
     depends_on:
       - zookeeper
